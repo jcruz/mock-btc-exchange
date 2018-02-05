@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :balances
   resources :tickers
   post 'user_token' => 'user_token#create'
   resources :users
