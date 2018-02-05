@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(email: params['email'], password: params['password'])
 
     if @user.save
+      @user.create_balance(usd: 100000, btc: 0)
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity

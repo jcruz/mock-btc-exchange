@@ -1,4 +1,5 @@
 class BalancesController < ApplicationController
+  before_action :authenticate_user
   before_action :set_balance, only: [:show, :update, :destroy]
 
   # GET /balances
