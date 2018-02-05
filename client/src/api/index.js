@@ -21,8 +21,7 @@ export const getTicker = () => {
     .then((json) => {
       const { last } = json;
       return Number(last);
-    })
-    .catch(e => console.log(e));
+    });
 };
 
 export const signIn = ({ email, password }) => {
@@ -39,8 +38,7 @@ export const signIn = ({ email, password }) => {
     .then((json) => {
       const { jwt } = json;
       return jwt;
-    })
-    .catch(e => console.log(e));
+    });
 };
 
 export const register = ({ email, password }) => {
@@ -54,8 +52,7 @@ export const register = ({ email, password }) => {
   })
     .then(checkStatus)
     .then(parseJSON)
-    .then(json => json)
-    .catch(e => console.log(e));
+    .then(json => json);
 };
 
 export const loadBalance = () => {
@@ -73,8 +70,7 @@ export const loadBalance = () => {
         btc: Number(btc),
         usd: Number(usd),
       };
-    })
-    .catch(e => console.log(e));
+    });
 };
 
 export const updateBalance = (payload) => {
@@ -95,6 +91,5 @@ export const updateBalance = (payload) => {
         btc: Number(btc),
         usd: Number(usd),
       };
-    })
-    .catch(e => console.log(e));
+    });
 };
