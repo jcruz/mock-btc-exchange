@@ -1,3 +1,5 @@
+const base = window.location.origin;
+
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -11,7 +13,7 @@ const parseJSON = response => response.json();
 
 export const getTicker = () => {
   const token = `Bearer ${localStorage.getItem('jwt')}`;
-  return fetch('http://localhost:3000/v1/tickers', {
+  return fetch(`${base}/v1/tickers`, {
     headers: {
       Authorization: token,
     },
@@ -26,7 +28,7 @@ export const getTicker = () => {
 
 export const signIn = ({ email, password }) => {
   const request = { auth: { email, password } };
-  return fetch('http://localhost:3000/v1/user_token', {
+  return fetch(`${base}/v1/user_token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +45,7 @@ export const signIn = ({ email, password }) => {
 
 export const register = ({ email, password }) => {
   const request = { email, password };
-  return fetch('http://localhost:3000/v1/users', {
+  return fetch(`${base}/v1/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -57,7 +59,7 @@ export const register = ({ email, password }) => {
 
 export const loadBalance = () => {
   const token = `Bearer ${localStorage.getItem('jwt')}`;
-  return fetch('http://localhost:3000/v1/balances', {
+  return fetch(`${base}/v1/balances`, {
     headers: {
       Authorization: token,
     },
@@ -75,7 +77,7 @@ export const loadBalance = () => {
 
 export const updateBalance = (payload) => {
   const token = `Bearer ${localStorage.getItem('jwt')}`;
-  return fetch('http://localhost:3000/v1/balances', {
+  return fetch(`${base}/v1/balances`, {
     method: 'PATCH',
     headers: {
       Authorization: token,
