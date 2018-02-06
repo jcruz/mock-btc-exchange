@@ -1,24 +1,42 @@
-# README
+# [Mock BTC Exchange](https://mock-btc-exchange.herokuapp.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Mock trade bitcoin. Users start out with $100,000 USD and get to play the real-time market prices. Users' mock digital assets and money is secured on the exchange.
 
-Things you may want to cover:
+## Users
+Non-traders and non-investors looking to play around in the cryptocurrency space without risking money.
 
-* Ruby version
+## Minimum viable product
+- User register & sign in
+- Mock buy/sell bitcoin
+- Track live market price
 
-* System dependencies
+## Functionality
+Users can register and sign in using email and password. Starting balance is $100,000 USD, which can be used to buy/sell bitcoin at the current market value. The exchange tracks the live price using [Gemini's API](https://docs.gemini.com/rest-api/). User balances are saved in the database so a user's digit assets can be re-accessed with a simple sign in.
 
-* Configuration
+## Installation
+Requirements include rails 5 and postgresql.
+```
+bundle install
+rails db:create db:migrate
+```
 
-* Database creation
+### Running the app
+```
+foreman start
+```
 
-* Database initialization
+## Issues
+- Implementing associations: resolved by reading the guide referenced below and adding the table reference in the scaffold generation command
 
-* How to run the test suite
+### Known bugs
+- Generated tests do not pass since I removed some controller endpoints
 
-* Services (job queues, cache servers, search engines, etc.)
+## References
+- [http://guides.rubyonrails.org/association_basics.html](http://guides.rubyonrails.org/association_basics.html)
+- [http://ruby-doc.org/stdlib-2.5.0/libdoc/net/http/rdoc/Net/HTTP.html](http://ruby-doc.org/stdlib-2.5.0/libdoc/net/http/rdoc/Net/HTTP.html)
 
-* Deployment instructions
+## Contributors
+Jonathan Cruz
 
-* ...
+## Licence
+MIT. Copyright (c) Jonathan Cruz.
