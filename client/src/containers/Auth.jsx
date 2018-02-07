@@ -8,47 +8,44 @@ import * as myActions from '../store/auth/actions';
 import AuthForm from '../components/AuthForm';
 
 class Auth extends Component {
-  _renderAuthForm = () => {
+  renderAuthForm = () => {
     const { signInRequest, registerRequest } = this.props;
 
     return (
       <AuthForm
         signInRequest={signInRequest}
-        registerRequest={registerRequest} />
+        registerRequest={registerRequest}
+      />
     );
   }
 
-  _renderSignOutButton = () => {
-    return (
-      <button onClick={this.props.signOutRequest}>
+  renderSignOutButton = () => (
+    <button onClick={this.props.signOutRequest}>
         Sign Out
-      </button>
-    );
-  }
+    </button>
+  )
 
   render() {
     const { isSignedIn } = this.props;
-    return isSignedIn ? this._renderSignOutButton() : this._renderAuthForm();
+    return isSignedIn ? this.renderSignOutButton() : this.renderAuthForm();
   }
 }
 
 const mapStateToProps = createSelector(
   [mySelectors.isSignedIn],
-  (isSignedIn) => ({ isSignedIn })
+  isSignedIn => ({ isSignedIn }),
 );
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signInRequest: (payload) => {
-      dispatch(myActions.signInRequest(payload));
-    },
-    registerRequest: (payload) => {
-      dispatch(myActions.registerRequest(payload));
-    },
-    signOutRequest: () => {
-      dispatch(myActions.signOutRequest());
-    }
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  signInRequest: (payload) => {
+    dispatch(myActions.signInRequest(payload));
+  },
+  registerRequest: (payload) => {
+    dispatch(myActions.registerRequest(payload));
+  },
+  signOutRequest: () => {
+    dispatch(myActions.signOutRequest());
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

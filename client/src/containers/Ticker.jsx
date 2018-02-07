@@ -10,14 +10,14 @@ class Ticker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      intervalId: null
+      intervalId: null,
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.loadTickerRequest();
     const intervalId = setInterval(this.props.loadTickerRequest, 5000);
-    this.setState({intervalId});
+    this.setState({ intervalId });
   }
 
   componentWillUnmount() {
@@ -39,15 +39,13 @@ class Ticker extends Component {
 
 const mapStateToProps = createSelector(
   [mySelectors.btcusd],
-  (btcusd) => ({ btcusd })
+  btcusd => ({ btcusd }),
 );
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadTickerRequest: () => {
-      dispatch(myActions.loadTickerRequest());
-    }
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  loadTickerRequest: () => {
+    dispatch(myActions.loadTickerRequest());
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ticker);

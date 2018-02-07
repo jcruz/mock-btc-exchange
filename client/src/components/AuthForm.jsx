@@ -4,21 +4,21 @@ export default class AuthForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signIn: true
-    }
+      signIn: true,
+    };
   }
 
-  _handleClick = () => {
+  handleClick = () => {
     const { signIn } = this.state;
-    this.setState({signIn: !signIn});
+    this.setState({ signIn: !signIn });
   }
 
-  _handleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const payload = {
       email: document.getElementById('email').value,
-      password: document.getElementById('password').value
-    }
+      password: document.getElementById('password').value,
+    };
     if (this.state.signIn) {
       this.props.signInRequest(payload);
     } else {
@@ -34,36 +34,37 @@ export default class AuthForm extends Component {
 
     return (
       <div>
-        <form onSubmit={(event) => this._handleSubmit(event)}>
-          <label>
+        <form onSubmit={event => this.handleSubmit(event)}>
+          <label htmlFor="email">
             Email:
             <br />
             <input
-              id='email'
-              type='email'
-              name='email' />
+              id="email"
+              type="email"
+              name="email"
+            />
           </label>
           <br /><br />
-          <label>
+          <label htmlFor="password">
             Password:
             <br />
             <input
-              id='password'
-              type='password'
-              name='password' />
+              id="password"
+              type="password"
+              name="password"
+            />
           </label>
           <br /><br />
-          <button type='submit'>
+          <button type="submit">
             {submitButtonText}
           </button>
         </form>
-        <br />
-        <label>
-          {switchLabelText}&nbsp;
-        </label>
-        <button onClick={this._handleClick}>
-          {switchButtonText}
-        </button>
+        <p>
+          <span>{switchLabelText}&nbsp;</span>
+          <button onClick={this.handleClick}>
+            {switchButtonText}
+          </button>
+        </p>
       </div>
     );
   }
