@@ -1,4 +1,7 @@
-# [Mock BTC Exchange](https://mock-btc-exchange.herokuapp.com/)
+# [Mock BTC Exchange](https://mock-btc-exchange.herokuapp.com/) [![travis][travis-image]][travis-url]
+
+[travis-image]: https://travis-ci.org/jcruz/mock-btc-exchange.svg?branch=master
+[travis-url]: https://travis-ci.org/jcruz/mock-btc-exchange
 
 Mock trade bitcoin. Users start out with $100,000 USD and get to play the real-time market prices. Users' mock digital assets and money is secured on the exchange.
 
