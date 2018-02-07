@@ -26,8 +26,8 @@ export const getTicker = () => {
     });
 };
 
-export const signIn = ({ email, password }) => {
-  const request = { auth: { email, password } };
+export const signIn = (payload) => {
+  const request = { auth: { ...payload } };
   return fetch(`${base}/v1/user_token`, {
     method: 'POST',
     headers: {
@@ -43,19 +43,16 @@ export const signIn = ({ email, password }) => {
     });
 };
 
-export const register = ({ email, password }) => {
-  const request = { email, password };
-  return fetch(`${base}/v1/users`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(request),
-  })
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(json => json);
-};
+export const register = payload => fetch(`${base}/v1/users`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(payload),
+})
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(json => json);
 
 export const loadBalance = () => {
   const token = `Bearer ${localStorage.getItem('jwt')}`;
