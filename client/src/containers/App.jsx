@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import PropTypes from 'prop-types';
 
 import * as mySelectors from '../store/auth/selectors';
 
@@ -13,6 +14,10 @@ const App = ({ isSignedIn }) => (
     {isSignedIn && <Exchange />}
   </div>
 );
+
+App.propTypes = {
+  isSignedIn: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = createSelector(
   [mySelectors.isSignedIn],

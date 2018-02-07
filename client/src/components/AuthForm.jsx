@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class AuthForm extends Component {
   constructor(props) {
@@ -69,3 +70,8 @@ export default class AuthForm extends Component {
     );
   }
 }
+
+AuthForm.propTypes = {
+  signInRequest: PropTypes.func.isRequired,
+  registerRequest: PropTypes.func.isRequired,
+};

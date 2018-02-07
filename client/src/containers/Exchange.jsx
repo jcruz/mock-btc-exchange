@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import PropTypes from 'prop-types';
 
 import * as mySelectors from '../store/exchange/selectors';
 import * as myActions from '../store/exchange/actions';
@@ -42,6 +43,14 @@ class Exchange extends Component {
     );
   }
 }
+
+Exchange.propTypes = {
+  btcusd: PropTypes.number.isRequired,
+  btc: PropTypes.number.isRequired,
+  usd: PropTypes.number.isRequired,
+  loadBalanceRequest: PropTypes.func.isRequired,
+  updateBalanceRequest: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = createSelector(
   [mySelectors.btcusd, mySelectors.btc, mySelectors.usd],
