@@ -34,13 +34,12 @@ const initialState = fromJS({
     passwordError: '',
   },
 });
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   combineReducers({
     ...reducers,
   }),
   initialState,
-  composeEnhancers(applyMiddleware(sagaMiddleware)),
+  compose(applyMiddleware(sagaMiddleware)),
 );
 sagaMiddleware.run(sagas);
 ReactDOM.render(
