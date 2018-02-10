@@ -7,7 +7,13 @@ namespace :ticker do
     while true
       url = 'https://api.gemini.com/v1/pubticker/btcusd'
       uri = URI(url)
-      response = Net::HTTP.get(uri)
+      begin
+        response = Net::HTTP.get(uri)
+      rescue StandardError => e
+        puts e
+        sleep 5
+        next
+      end
       json = JSON.parse(response)
       if Ticker.count > 0
         Ticker.first.update_column(:last, json['last'].to_f)
