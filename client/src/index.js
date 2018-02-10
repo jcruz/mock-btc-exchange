@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Helmet } from 'react-helmet';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
@@ -16,9 +17,15 @@ import registerServiceWorker from './registerServiceWorker';
 const sagaMiddleware = createSagaMiddleware();
 
 const createApp = store => (
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <div>
+    <Helmet>
+      <title>BTC Exchange</title>
+      <meta name='description' content='Mock bitcoin exchange.' />
+    </Helmet>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </div>
 );
 const initialState = fromJS({
   auth: {
