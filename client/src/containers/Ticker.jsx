@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 
 import * as mySelectors from '../store/exchange/selectors';
 import * as myActions from '../store/exchange/actions';
-import { formatNumber } from '../utils';
+
+import Prices from '../components/Prices';
+
+const propTypes = {
+  btcusd: PropTypes.number.isRequired,
+  loadTickerRequest: PropTypes.func.isRequired,
+  loadingTicker: PropTypes.bool.isRequired,
+};
 
 class Ticker extends Component {
   constructor(props) {
@@ -27,25 +34,16 @@ class Ticker extends Component {
   }
 
   render() {
-    const { btcusd } = this.props;
-    return (
-      <div>
-        <p>Bitcoin</p>
-        <p>Last Price</p>
-        <p>${formatNumber(btcusd, 2)} USD</p>
-      </div>
-    );
+    const { btcusd, loadingTicker } = this.props;
+    return <Prices btcusd={btcusd} loadingTicker={loadingTicker} />;
   }
 }
 
-Ticker.propTypes = {
-  btcusd: PropTypes.number.isRequired,
-  loadTickerRequest: PropTypes.func.isRequired,
-};
+Ticker.propTypes = propTypes;
 
 const mapStateToProps = createSelector(
-  [mySelectors.btcusd],
-  btcusd => ({ btcusd }),
+  [mySelectors.btcusd, mySelectors.loadingTicker],
+  (btcusd, loadingTicker) => ({ btcusd, loadingTicker }),
 );
 
 const mapDispatchToProps = dispatch => ({

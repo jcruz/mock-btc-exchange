@@ -9,6 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import reducers from './store/reducers';
 import sagas from './store/sagas';
 
+import './index.css';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -22,6 +23,8 @@ const createApp = store => (
 const initialState = fromJS({
   auth: {
     isSignedIn: localStorage.getItem('jwt') !== null,
+    emailError: '',
+    passwordError: '',
   },
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

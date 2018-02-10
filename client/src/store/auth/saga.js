@@ -3,7 +3,7 @@ import { call, put, takeLatest, all } from 'redux-saga/effects';
 import * as actionTypes from './actionTypes';
 import * as actions from './actions';
 
-import * as api from '../../api';
+import * as api from '../../utils/api';
 import * as utils from '../../utils';
 
 function* signInRequest(action) {
@@ -31,7 +31,7 @@ function* signOutRequest() {
     yield call(utils.removeItemLocalStorage, 'jwt');
     yield put(actions.signOutSuccess());
   } catch (e) {
-    console.log(e);
+    yield put(actions.signOutFailure());
   }
 }
 

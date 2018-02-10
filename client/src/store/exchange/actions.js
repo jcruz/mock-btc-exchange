@@ -51,3 +51,9 @@ export function updateBalanceSuccess(payload) {
     payload: { ...payload },
   };
 }
+
+export function updateBalanceFailure() {
+  return {
+    type: actionTypes.UPDATE_BALANCE_FAILURE,
+  };
+}

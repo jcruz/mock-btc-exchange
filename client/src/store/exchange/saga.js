@@ -3,7 +3,7 @@ import { call, put, takeLatest, all } from 'redux-saga/effects';
 import * as actionTypes from './actionTypes';
 import * as actions from './actions';
 
-import * as api from '../../api';
+import * as api from '../../utils/api';
 
 function* loadTickerRequest() {
   try {
@@ -28,7 +28,7 @@ function* updateBalanceRequest(action) {
     const payload = yield call(api.updateBalance, action.payload);
     yield put(actions.updateBalanceSuccess(payload));
   } catch (e) {
-    console.log(e);
+    yield put(actions.updateBalanceFailure());
   }
 }
 
