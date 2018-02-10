@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(email: params['email'], password: params['password'])
 
-    if @user.save
+    if User.find_by_email(params['email'])
+      render json: @user.errors, status: :conflict
+    elsif @user.save
       @user.create_balance(usd: 100000, btc: 0)
       render json: @user, status: :created, location: @user
     else
